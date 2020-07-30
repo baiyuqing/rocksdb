@@ -40,7 +40,7 @@ class SnapshotImpl : public Snapshot {
   int64_t unix_time_;
 
   // Will this snapshot be used by a Transaction to do write-conflict checking?
-  bool is_write_conflict_boundary_;
+  bool is_write_conflict_boundary_; //Snapshot 写冲突检查标志
 };
 
 class SnapshotList {

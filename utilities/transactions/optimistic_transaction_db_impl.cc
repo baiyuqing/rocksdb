@@ -25,6 +25,7 @@ Transaction* OptimisticTransactionDBImpl::BeginTransaction(
     ReinitializeTransaction(old_txn, write_options, txn_options);
     return old_txn;
   } else {
+      // 实例化乐观事务
     return new OptimisticTransaction(this, write_options, txn_options);
   }
 }
