@@ -87,6 +87,7 @@ Status OptimisticTransaction::TryLock(ColumnFamilyHandle* column_family,
   if (!do_validate) {
     return Status::OK();
   }
+  //取 ColumnFamilyID
   uint32_t cfh_id = GetColumnFamilyID(column_family);
 
   SetSnapshotIfNeeded();

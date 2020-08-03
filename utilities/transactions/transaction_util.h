@@ -33,6 +33,7 @@ struct TransactionKeyMapInfo {
       : seq(seq_no), num_writes(0), num_reads(0), exclusive(false) {}
 };
 
+//using 此用法类似于 typedef
 using TransactionKeyMap =
     std::unordered_map<uint32_t,
                        std::unordered_map<std::string, TransactionKeyMapInfo>>;

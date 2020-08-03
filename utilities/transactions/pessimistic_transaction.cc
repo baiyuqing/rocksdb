@@ -561,8 +561,8 @@ Status PessimisticTransaction::TryLock(ColumnFamilyHandle* column_family,
     if (iter == tracked_keys_cf->second.end()) {
       previously_locked = false;
     } else {
-      if (!iter->second.exclusive && exclusive) {
-        lock_upgrade = true;
+      if (!iter->second.exclusive && exclusive) { // iter->second is TransactionKeyMapInfo
+        lock_upgrade = true; //write or read_for_update 
       }
       previously_locked = true;
       tracked_at_seq = iter->second.seq;

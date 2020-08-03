@@ -592,12 +592,12 @@ void TransactionBaseImpl::TrackKey(TransactionKeyMap* key_map, uint32_t cfh_id,
                                    bool read_only, bool exclusive) {
   auto& cf_key_map = (*key_map)[cfh_id];
   auto iter = cf_key_map.find(key);
-  if (iter == cf_key_map.end()) {
+  if (iter == cf_key_map.end()) { //如果没有检索到，返回值是 .end()
     auto result = cf_key_map.emplace(key, TransactionKeyMapInfo(seq));
     iter = result.first;
   } else if (seq < iter->second.seq) {
     // Now tracking this key with an earlier sequence number
-    iter->second.seq = seq;
+    iter->second.seq = seq; //second represent TransactionKeyMapInfo
   }
   // else we do not update the seq. The smaller the tracked seq, the stronger it
   // the guarantee since it implies from the seq onward there has not been a
